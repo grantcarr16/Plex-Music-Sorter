@@ -1,8 +1,8 @@
 from methods import rename_file
 from glob import glob
 
-artist = 'Bing Chrosby'
-album = r"White Christmas"
+artist = 'The Beatles'
+album = "The Beatles"
 
 file_path = f'/Users/grantcarr/Desktop/Plex Music/{artist}/{album}/*'
 

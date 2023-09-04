@@ -4,7 +4,9 @@ from glob import glob
 
 def main():
 
-    artists = ['Gutta Gambino','In The Heights','J. Cole','Jay-Z','John Mayer','John Williams','Luke Combs','Lupe Fiasco','Michael Jackson','Pink Floyd','Slipknot','System Of A Down','The Beatles','The Rolling Stones','The Who','Travis Tritt','Ty-Ty']
+    artists = ['The Beatles']
+
+    """ Need to code in a check to look if the file has been moved arleady """
 
     for artist in artists:
 
