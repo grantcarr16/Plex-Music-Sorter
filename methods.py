@@ -39,6 +39,8 @@ def copy_file(source_file_path, destination_folder):
     if not os.path.exists(destination_folder):
         print(f"Destination folder {destination_folder} already exists")
         os.makedirs(destination_folder)
+    else:
+        return
     
     # Get the file name from the source path
     file_name = os.path.basename(source_file_path)
