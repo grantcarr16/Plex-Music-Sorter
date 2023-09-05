@@ -31,7 +31,7 @@ def main():
             methods.create_album_folder(folder_path=album_folder_path)
 
             for file in glob(f'{original_folder_artist_path}/{album_name}/*'):
-
+                
                 methods.copy_file(source_file_path=file,destination_folder=album_folder_path)
 
             

@@ -3,9 +3,9 @@ import shutil
 from glob import glob
 
 
-def create_artist_folder_path(artist)->str:
+def create_artist_folder_path(artist,path='/Users/grantcarr/Desktop/Plex Music/')->str:
 
-    folder_path = f'/Users/grantcarr/Desktop/Plex Music/{artist}'
+    folder_path = f'{path}{artist}'
 
     return folder_path
 
@@ -37,13 +37,20 @@ def copy_file(source_file_path, destination_folder):
     
     # Check if the destination folder exists
     if not os.path.exists(destination_folder):
+        print(f"Destination folder {destination_folder} already exists")
         os.makedirs(destination_folder)
+    else:
+        return
     
     # Get the file name from the source path
     file_name = os.path.basename(source_file_path)
-    
-    # Create the destination file path
-    destination_file_path = os.path.join(destination_folder, file_name)
+
+    if not os.path.exists(os.path.join(destination_folder, file_name)):    
+        # Create the destination file path
+        destination_file_path = os.path.join(destination_folder, file_name)
+    else:
+        print(f'{file_name} already exists in {destination_folder}')
+
     
     # Copy the file
     shutil.copy(source_file_path, destination_file_path)
