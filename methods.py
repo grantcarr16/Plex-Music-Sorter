@@ -3,14 +3,14 @@ import shutil
 from glob import glob
 
 
-def create_artist_folder_path(artist,path='/Users/grantcarr/Desktop/Plex Music/')->str:
+def create_artist_folder_path(artist,path='/Users/grantcarr/Desktop/Plex Music/') -> str:
 
     folder_path = f'{path}{artist}'
 
     return folder_path
 
 
-def create_album_folder_path(artist_path,album)->str:
+def create_album_folder_path(artist_path,album) -> str:
 
     folder_path = f'{artist_path}/{album}'
 
@@ -28,7 +28,7 @@ def create_album_folder(folder_path) -> None:
         print(f"Folder '{folder_path}' already exists.")
 
 
-def copy_file(source_file_path, destination_folder):
+def copy_file(source_file_path, destination_folder) -> None:
     
     # Check if the source file exists
     if not os.path.exists(source_file_path):
@@ -57,7 +57,7 @@ def copy_file(source_file_path, destination_folder):
     #print(f"File '{file_name}' copied to '{destination_folder}'.")
 
 
-def rename_file(file_path):
+def rename_file(file_path) -> None:
     
     # Check if the file exists
     if not os.path.exists(file_path):
