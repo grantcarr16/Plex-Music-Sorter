@@ -1,39 +1,48 @@
 import methods
 from glob import glob
 
+def double_backslash_remover(path_list)->list:
+    
+    path_list = [path.replace('\\','/') for path in path_list]
+
+    return path_list
+
+
 
 def main():
 
-    artists = ['Gutta Gambino','In The Heights','J. Cole','Jay-Z','John Mayer','John Williams','Luke Combs','Lupe Fiasco','Michael Jackson','Pink Floyd','Slipknot','System Of A Down','The Beatles','The Rolling Stones','The Who','Travis Tritt','Ty-Ty']
+    artists = ['Creedence Clearwater Revival','Black Label Society','Boyz II Men','Blink-182','Green Day','Matchbox Twenty','Aladdin','Rudolph, Frosty and Friends','Lion King Soundtrack','Disney','Coco Soundtrack']
+
+    #itunes_path = 'C:/Users/grant/Desktop/Music/Itunes Library/Music'
+    itunes_path = 'C:/Users/grant/Music/iTunes/iTunes Media/Music'
+    plexamp_path = 'C:/Users/grant/Desktop/Music/Plexamp'
 
     for artist in artists:
 
         #artist = 'Bing Crosby'
         
-        original_folder_artist_path = f'/Volumes/PAGE 394/Page 394 Library/Media.localized/{artist}'
-
-        artist_folder_path = methods.create_artist_folder_path(artist=artist)
+        original_folder_artist_path = f'{itunes_path}/{artist}'
+        #print(original_folder_artist_path)
+        artist_folder_path = methods.create_artist_folder_path(artist=artist, path=plexamp_path)
+        #print(original_folder_artist_path)
         
-        #print(artist_folder_path)
-        #print('')
-
-        for album in glob(f'{original_folder_artist_path}/*'):
-
+        album_list = double_backslash_remover(glob(f'{original_folder_artist_path}/*'))
+        
+        for album in album_list:
+            
             album_name = album.split('/')[-1]
-
             album_folder_path = methods.create_album_folder_path(artist_folder_path,album=album_name)
-            #print('*****')
-            #print(album_folder_path)
-            #print('')
-
             methods.create_album_folder(folder_path=album_folder_path)
+            album_file_list = double_backslash_remover(glob(f'{original_folder_artist_path}/{album_name}/*'))
 
-            for file in glob(f'{original_folder_artist_path}/{album_name}/*'):
-                
+            for file in album_file_list:
+                #print(file)
+                #print(album_folder_path)
                 methods.copy_file(source_file_path=file,destination_folder=album_folder_path)
 
+            plex_album_file_list = double_backslash_remover(glob(f'{album_folder_path}/*'))
             
-            for file in glob(f'{album_folder_path}/*'):
+            for file in plex_album_file_list:
 
                 methods.rename_file(file)
 
