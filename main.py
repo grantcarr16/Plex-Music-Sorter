@@ -11,11 +11,19 @@ def double_backslash_remover(path_list)->list:
 
 def main():
 
-    artists = ['Creedence Clearwater Revival','Black Label Society','Boyz II Men','Blink-182','Green Day','Matchbox Twenty','Aladdin','Rudolph, Frosty and Friends','Lion King Soundtrack','Disney','Coco Soundtrack']
+
 
     #itunes_path = 'C:/Users/grant/Desktop/Music/Itunes Library/Music'
     itunes_path = 'C:/Users/grant/Music/iTunes/iTunes Media/Music'
     plexamp_path = 'C:/Users/grant/Desktop/Music/Plexamp'
+
+    artists = []
+    for folder in double_backslash_remover(glob(f'{itunes_path}/*')):
+        artist = folder.split('/')[-1]
+        artists.append(artist)
+
+    print(artists)
+
 
     for artist in artists:
 

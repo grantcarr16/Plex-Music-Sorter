@@ -80,5 +80,10 @@ def rename_file(file_path) -> None:
         # Rename the file
         os.rename(file_path, new_path)
         #print(f"Renamed '{file_name}' to '{new_name}'.")
+    elif len(parts) == 2 and ~parts[0].isdigit():
+        file_number = parts[0].split("-")[1]
+        new_name = f"{file_number} - {parts[1]}{ext}"
+        new_path = os.path.join(os.path.dirname(file_path), new_name)
+        os.rename(file_path, new_path)
     else:
         print(f"File '{file_name}' does not follow the expected naming convention.")
